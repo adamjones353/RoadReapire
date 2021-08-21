@@ -23,6 +23,11 @@ namespace RoadRepair
         /// <returns>The number of hours to complete the work.</returns>
         public double GetTime()
         {
+            if(Workers == 0 || HoursOfWork == 0)
+            {
+                throw new ArgumentException("Workers or hours of work cannot be zero");
+            }
+
             double time = HoursOfWork / Workers;
             return time;
         }
@@ -35,6 +40,11 @@ namespace RoadRepair
         /// <returns>Either a PatchingRepair or a Resurfacing</returns>
         public ISurfaceRepair SelectRepairType(Road road)
         {
+            if (road.Width == 0 || road.Length == 0)
+            {
+                throw new ArgumentException("Road width or length cannot be zero");
+            }
+
             double roadSurfaceArea = road.Width * road.Length;
 
             var potholeDensity = (road.Potholes / roadSurfaceArea) * 100;
@@ -42,6 +52,11 @@ namespace RoadRepair
             if (potholeDensity > 20)
             {
                 return new Resurfacing(road);
+            }
+
+            if (potholeDensity == 0)
+            {
+                return null;
             }
 
             return new PatchingRepair(road);

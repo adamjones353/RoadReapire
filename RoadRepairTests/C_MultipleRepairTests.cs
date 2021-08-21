@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RoadRepair;
 
@@ -22,7 +23,7 @@ namespace RoadRepairTests
 
             var totalVolume = plan.GetVolumeOfRepairs(roads);
             Assert.AreEqual(1.0, totalVolume, 0.00001);
-        }
+        }       
 
         [TestMethod]
         public void LimitedMaterial()

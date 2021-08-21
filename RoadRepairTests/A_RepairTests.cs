@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RoadRepair;
+using System;
 
 namespace RoadRepairTests
 {
@@ -24,5 +25,12 @@ namespace RoadRepairTests
             Assert.AreEqual(0.45, volume);
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "Road width or length can not be zero or null")]
+        public void ZeroDataHandledCorrectly()
+        {
+            var road = new Road { Length = 0, Width = 0, Potholes = 0 };
+            new Resurfacing(road);
+        }
     }
 }

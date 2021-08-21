@@ -1,4 +1,6 @@
-﻿namespace RoadRepair
+﻿using System;
+
+namespace RoadRepair
 {
     /// <summary>
     /// A resurface is where you fix the whole road, not just the parts that are damaged.
@@ -7,6 +9,11 @@
     {
         public Resurfacing(Road road)
         {
+            if(road.Width == 0 || road.Length == 0)
+            {
+                throw new ArgumentException("Road width or length cannot be zero");
+            }
+
             Road = road;         
             Depth = 0.1;
         }
