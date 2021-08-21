@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -73,7 +73,22 @@ namespace RoadRepair
         /// <returns>A subset of roads that can be repaired with the available material</returns>
         public List<Road> SelectRoadsToRepair(List<Road> roads, double availableMaterial)
         {
-            throw new NotImplementedException("TODO");
+            List<ISurfaceRepair> roadsToRepaire = new List<ISurfaceRepair>();
+
+            var temp = GetVolumesOfRepaires(roads).OrderBy(x => x.Road.Potholes);
+
+            //order by decs so that we fill in as many as possible. 
+            foreach (ISurfaceRepair surfaceRepair in GetVolumesOfRepaires(roads).OrderByDescending(x => x.Road.Potholes))
+            {
+                roadsToRepaire.Add(surfaceRepair);
+
+                if (roadsToRepaire.Sum(x => x.GetVolume()) > availableMaterial)
+                {
+                    roadsToRepaire.RemoveAt(roadsToRepaire.Count - 1);
+                }
+            }
+
+            return roadsToRepaire.Select(x => x.Road).ToList();
         }
     }
 
