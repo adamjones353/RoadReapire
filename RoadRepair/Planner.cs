@@ -54,7 +54,14 @@ namespace RoadRepair
         /// <returns>The total volume of all the repairs</returns>
         public double GetVolumeOfRepairs(List<Road> roads)
         {
-            throw new NotImplementedException("TODO");
+            return GetVolumesOfRepaires(roads).Sum(x => x.GetVolume());
+        }
+
+        public List<ISurfaceRepair> GetVolumesOfRepaires(List<Road> roads)
+        {
+            return roads.Select(x => {
+                return SelectRepairType(x);
+            }).ToList();
         }
 
         /// <summary>
