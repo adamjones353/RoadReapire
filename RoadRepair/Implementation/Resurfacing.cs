@@ -3,22 +3,20 @@
     /// <summary>
     /// A resurface is where you fix the whole road, not just the parts that are damaged.
     /// </summary>
-    public class Resurfacing
+    public class Resurfacing : ISurfaceRepair
     {
         public Resurfacing(Road road)
         {
-            Width = road.Width;
-            Length = road.Length;
+            Road = road;         
             Depth = 0.1;
         }
 
-        public double Width { get; }
-        public double Length { get; }
+        public Road Road { get; }
         public double Depth { get; }
 
         public double GetVolume()
         {
-            var volume = Width * Length * Depth;
+            var volume = Road.Width * Road.Length * Depth;
             return volume;
         }
     }
