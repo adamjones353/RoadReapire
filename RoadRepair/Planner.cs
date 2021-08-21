@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +10,12 @@ namespace RoadRepair
         /// <summary>
         /// The total number of hours needed to complete the work.
         /// </summary>
-        public int HoursOfWork { get; set; }
+        public double HoursOfWork { get; set; }
 
         /// <summary>
         /// The number of people available to do the work
         /// </summary>
-        public int Workers { get; set; }
+        public double Workers { get; set; }
 
         /// <summary>
         /// The time to complete the work, using all the workers.
@@ -23,7 +23,7 @@ namespace RoadRepair
         /// <returns>The number of hours to complete the work.</returns>
         public double GetTime()
         {
-            var time = HoursOfWork / Workers;
+            double time = HoursOfWork / Workers;
             return time;
         }
 
