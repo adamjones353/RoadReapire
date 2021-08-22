@@ -18,7 +18,7 @@ namespace RoadRepairTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException), "Road width or length can not be zero or null")]
+        [ExpectedException(typeof(ArgumentException), "Workers or hours of work cannot be zero")]
         public void CalculateTimeHanldesZeroValues()
         {
             var planner = new Planner();
@@ -50,7 +50,7 @@ namespace RoadRepairTests
         }
 
         [TestMethod]
-        public void PlannerReturnsCorrectRepaireFor20PercentVolumn()
+        public void PlannerReturnsCorrectRepairFor20PercentVolume()
         {
             var road = new Road { Length = 1, Width = 5 };
             road.Potholes = 1;
